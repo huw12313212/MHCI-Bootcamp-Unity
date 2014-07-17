@@ -9,6 +9,7 @@ public class MainCharacterInput : MonoBehaviour {
 	public float JumpSpeed;
 	public List<Collider> floor = new List<Collider>();
 
+
 	// Use this for initialization
 	void Start () {
 	
@@ -26,6 +27,8 @@ public class MainCharacterInput : MonoBehaviour {
 			floor.Add(collision.collider);
 		}
 	}
+
+
 
 
 	void OnCollisionExit(Collision collisionInfo) 
