@@ -17,6 +17,17 @@ public class BulletScript : MonoBehaviour {
 	
 	}
 
+	void OnTriggerEnter(Collider other) {
+
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Monster")) 
+		{
+			MonsterScript monster = other.gameObject.GetComponent<MonsterScript>();	
+			monster.Hurt(AttackValue);
+		}
+
+	}
+
+
 	void KillMyself()
 	{
 		GameObject.Destroy(this.gameObject);
