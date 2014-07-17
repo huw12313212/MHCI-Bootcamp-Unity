@@ -7,7 +7,6 @@ public class MainCharacterInput : MonoBehaviour {
 	public float RotationSpeed;
 	public float MoveSpeed;
 	public float JumpSpeed;
-
 	public List<Collider> floor = new List<Collider>();
 
 	// Use this for initialization
@@ -15,10 +14,10 @@ public class MainCharacterInput : MonoBehaviour {
 	
 	}
 
-
-
 	void OnCollisionEnter(Collision collision) 
 	{
+
+		Debug.Log (collision.collider.gameObject.name+" :"+collision.contacts [0].normal);
 
 		Vector3 normal = collision.contacts [0].normal;
 
@@ -37,47 +36,42 @@ public class MainCharacterInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		/*
-		if (Input.GetKeyDown (KeyCode.W)) 
-		{
-			Debug.Log("W Down");
-			
-		}*/
-
 		Vector3 VelocityXZ = Vector3.zero;
 		float VelocityY = rigidbody.velocity.y;
 
 		if (Input.GetKey (KeyCode.W)) 
 		{
-			Debug.Log("W pressed");
 			VelocityXZ += MoveSpeed * transform.forward;
 				
 		}
 		
 		if (Input.GetKey (KeyCode.S)) 
 		{
-			Debug.Log("W pressed");
 			
 			VelocityXZ = -MoveSpeed * transform.forward;
 		}
 
 		if (floor.Count > 0) {
 						if (Input.GetKeyDown (KeyCode.Space)) {
-								Debug.Log ("W pressed");
+								//Debug.Log ("W pressed");
 			
 								VelocityY += (JumpSpeed * transform.up).y;
 						}
 				}
 
+
+		if (Input.GetKey (KeyCode.A)) {
+			VelocityXZ += -MoveSpeed * transform.right;
+		
+		}
+
+		if (Input.GetKey (KeyCode.D)) {
+			VelocityXZ += MoveSpeed * transform.right;
+			
+		}
+
 		rigidbody.velocity = new Vector3 (VelocityXZ.x,VelocityY,VelocityXZ.z);
 
 
-		/*
-		if (Input.GetKeyUp(KeyCode.W)) 
-		{
-			Debug.Log("W Up");
-			
-		}*/
-	
 	}
 }
